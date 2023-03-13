@@ -22,6 +22,10 @@ import { equipeHeros, equipeMonstres } from "./equipes";
                       console.log(`L'équipe de héros attaque  avec ${premierAttaquant.nom}`);
                       if(equipeMonstres[0].pointDeVie > 0 ){
                         premierAttaquant.attaquer(equipeMonstres[0]  );
+                        if(equipeMonstres[0].pointDeVie > 0 ){
+                          console.log(`OH MON DIEU L'ENNEMI ${equipeMonstres[0].nom} CONTRE ATTAQUE !! `);
+                          equipeMonstres[0].attaquer(equipeHeros[0]);
+                        }
                       } else {
                         console.log(`${premierAttaquant.nom} ne peut pas attaquer ${equipeMonstres[0].nom } puisqu'il est déjà MORT`);
                         premierAttaquant.attaquer(equipeMonstres[1]  );
@@ -39,6 +43,10 @@ import { equipeHeros, equipeMonstres } from "./equipes";
                           console.log(`L'équipe de monstres attaque  avec ${premierAttaquant.nom}`);
                           if(equipeHeros[0].pointDeVie > 0 ){
                             premierAttaquant.attaquer(equipeHeros[0]);
+                            if(equipeHeros[0].pointDeVie > 0 ){
+                              console.log(`OH MON DIEU L'ENNEMI ${equipeHeros[0].nom} CONTRE ATTAQUE !! `);
+                              equipeHeros[0].attaquer(equipeMonstres[0]);
+                            }
                           } else {
                             console.log(`${premierAttaquant.nom} ne peut pas attaquer ${equipeHeros[0].nom } puisqu'il est déjà MORT`);
                             premierAttaquant.attaquer(equipeHeros[1]);
@@ -66,6 +74,6 @@ while ((equipeHeros[0].pointDeVie > 0 || equipeHeros[1].pointDeVie > 0) && (equi
               
               }
             } else  if(equipeHeros[0].pointDeVie <= 0 && equipeHeros[1].pointDeVie <= 0){
-              console.log( `l'équipe de ` + equipeMonstres[0].nom  + ` a remporté la victoire ! `);
+              console.log( `l'équipe de ` + equipeMonstres[0].nom && equipeMonstres[1].nom + ` a remporté la victoire ! `);
             }
 }

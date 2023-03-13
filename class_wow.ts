@@ -15,6 +15,7 @@ export class Personnage {
         const degats = this.arme.pointsDegatsParAttaque;
         console.log(`${this.nom} attaque ${adversaire.nom} avec ${this.arme.nom} et lui inflige ${degats} pts de dégats.`);
         adversaire.recevoirDegats(degats);
+
     }
 
     recevoirDegats(degats: number) {
