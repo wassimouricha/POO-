@@ -1,0 +1,16 @@
+polymorphisme : héritage , class parent et enfant , on fait passer un objet pour un autre 
+plusieurs formes 
+a chercher la définition de polymorphisme et apprendre par cœur 
+polymorphisme : interface ou de méthode unique pouvant traiter plusieurs types
+
+L'injection de dépendances:  
+pour une classe, à déléguer la création de ses dépendances au code appelant qui va ensuite les injecter dans la classe correspondante.
+l'inversion de contrôle :  
+    Inversion of Control, IOC est un patron d'architecture commun à tous les frameworks. 
+ Il fonctionne selon le principe que le flot d'exécution d'un logiciel n'est plus sous le contrôle.
+
+ les couches : 
+
+ interface: 
+    une interface est une construction qui déclare les normes. 
+    Les classes dérivées  d'une interface doivent être conformes aux normes imposées par l'interface.
