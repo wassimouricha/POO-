@@ -8,6 +8,6 @@ export  let equipeHeros: Heros[] = [
     ];
 
 export let equipeMonstres: Monstre[] = [
-    new Monstre("Grum", 25, new Arme("L'abattoir", 12, 120, 1500)),
+    new Monstre("Dracula", 25, new Arme("L'abattoir", 12, 120, 1500)),
     new Monstre("Grom", 20, new Arme("Massue en pierre", 6, 80, 2000))
     ];
