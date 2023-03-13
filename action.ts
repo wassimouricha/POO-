@@ -12,7 +12,7 @@ import { equipeHeros, equipeMonstres } from "./equipes";
           const equipeAuHasard = Math.floor(Math.random() * 2); 
           // tirez un nombre aléatoire entre 0 et 1 pour choisir au hasard  qui va commencer à attaquer
           let premierAttaquant: Personnage;
-          let mort : Boolean = false;
+
           if (equipeAuHasard === 0) { // Si l'équipe choisie est l'équipe de héros
               // Math.floor() renvoie le plus grand entier qui est inférieur ou égal à un nombre x ici x = Math.random() * equipeHeros.length
               // Math.random() qui génère un nombre aléatoire compris entre 0 et 1
@@ -48,13 +48,7 @@ import { equipeHeros, equipeMonstres } from "./equipes";
               console.log(`${premierAttaquant.nom} ne peut pas attaquer puisqu'il est MORT`);
             }
 
-            // qui a remporté la victoire ? 
-            if(equipeMonstres[0].pointDeVie  && equipeMonstres[1].pointDeVie <= 0){
-              console.log(`l'équipe de ` + equipeHeros[0].nom && equipeHeros[1].nom + ` a remporté la victoire ! `);
-              
-            } else  if(equipeHeros[0].pointDeVie && equipeHeros[1].pointDeVie <= 0){
-              console.log( `l'équipe de ` + equipeMonstres[0].nom  + ` a remporté la victoire ! `);
-            }
+
 
           }
           return premierAttaquant;
@@ -63,5 +57,15 @@ import { equipeHeros, equipeMonstres } from "./equipes";
 // Boucle de jeu
 while ((equipeHeros[0].pointDeVie > 0 || equipeHeros[1].pointDeVie > 0) && (equipeMonstres[0].pointDeVie > 0 || equipeMonstres[1].pointDeVie > 0)) {
   Jeu(equipeHeros,equipeMonstres);
-
+            // qui a remporté la victoire ? 
+            let mort : Boolean = false;
+            if(equipeMonstres[0].pointDeVie <= 0  && equipeMonstres[1].pointDeVie <= 0){
+              mort = true; 
+              if(mort == true ) {
+                console.log(`l'équipe de ` + equipeHeros[0].nom && equipeHeros[1].nom + ` a remporté la victoire ! `);
+              
+              }
+            } else  if(equipeHeros[0].pointDeVie <= 0 && equipeHeros[1].pointDeVie <= 0){
+              console.log( `l'équipe de ` + equipeMonstres[0].nom  + ` a remporté la victoire ! `);
+            }
 }
