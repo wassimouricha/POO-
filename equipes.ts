@@ -3,12 +3,12 @@
 import { Arme, Heros, Monstre } from "./class_wow";
 
 export  let equipeHeros: Heros[] = [
-    new Heros("Arthas Menethil", 30, new Arme("Lames du chaos", 10, 100, 1000)),
-    new Heros("Van Hellsing", 25, new Arme("Canon scié", 8, 90, 800))
+    new Heros("Arthas Menethil", 30, new Arme("Lames du chaos", 10, 100, 1000), 500),
+    new Heros("Van Hellsing", 25, new Arme("Canon scié", 8, 90, 800),250)
     ];
 
 export let equipeMonstres: Monstre[] = [
-    new Monstre("Dracula", 25, new Arme("L'abattoir", 12, 120, 1500)),
-    new Monstre("Grom", 20, new Arme("Massue en pierre", 6, 80, 2000))
+    new Monstre("Dracula", 25, new Arme("L'abattoir", 12, 120, 1500),500),
+    new Monstre("Grom", 20, new Arme("Massue en pierre", 6, 80, 2000),250)
     ];
 

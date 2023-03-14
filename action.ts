@@ -70,10 +70,10 @@ while ((equipeHeros[0].pointDeVie > 0 || equipeHeros[1].pointDeVie > 0) && (equi
             if(equipeMonstres[0].pointDeVie <= 0  && equipeMonstres[1].pointDeVie <= 0){
               mort = true; 
               if(mort == true ) {
-                console.log(`l'équipe de ` + equipeHeros[0].nom && equipeHeros[1].nom + ` a remporté la victoire ! `);
+                console.log(`l'équipe de  ${equipeHeros[0].nom && equipeHeros[1].nom}  a remporté la victoire ! `);
               
               }
             } else  if(equipeHeros[0].pointDeVie <= 0 && equipeHeros[1].pointDeVie <= 0){
-              console.log( `l'équipe de ` + equipeMonstres[0].nom && equipeMonstres[1].nom + ` a remporté la victoire ! `);
+              console.log( `l'équipe de  ${equipeMonstres[0].nom && equipeMonstres[1].nom}  a remporté la victoire ! `);
             }
 }
