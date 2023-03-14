@@ -5,12 +5,14 @@ export class Personnage {
     public pointDeVie: number;
     public arme: Arme;
     public endurance: number;
+    public sacoche: Sacoche;
 
-    constructor(nom: string, pointDeVie: number, arme: Arme , endurance: number) {
+    constructor(nom: string, pointDeVie: number, arme: Arme , endurance: number , sacoche: Sacoche) {
         this.nom = nom;
         this.pointDeVie = pointDeVie;
         this.arme = arme;
         this.endurance = endurance;
+        this.sacoche = sacoche;
     }
 // l'attaque
     attaquer(adversaire: Personnage) {
@@ -35,16 +37,16 @@ export class Personnage {
  // je crée ma class Heros qui extends la class Personnage
 
 export class Heros extends Personnage {
-    constructor(nom: string, pointDeVie: number, arme: Arme , endurance: number) {
-        super(nom, pointDeVie, arme,endurance);
+    constructor(nom: string, pointDeVie: number, arme: Arme , endurance: number , sacoche: Sacoche) {
+        super(nom, pointDeVie, arme,endurance, sacoche);
     }
 }
 
  // je crée ma class Monstre qui extends la class Personnage
 
 export class Monstre extends Personnage {
-    constructor(nom: string, pointDeVie: number, arme: Arme , endurance: number) {
-        super(nom, pointDeVie, arme , endurance);
+    constructor(nom: string, pointDeVie: number, arme: Arme , endurance: number , sacoche: Sacoche ) {
+        super(nom, pointDeVie, arme , endurance, sacoche);
     }
 }
 
@@ -66,3 +68,33 @@ export class Arme {
     }
     }
 
+    //  je crée une classe Bouclier 
+    export class Bouclier {
+        public nom: string;
+        public pointsEncaissementDégats: number;
+        public poidsGr : number;
+
+        constructor(nom: string , pointsEncaissementDégats: number , poidsGr : number){
+            this.nom = nom;
+            this.pointsEncaissementDégats = pointsEncaissementDégats;
+            this.poidsGr = poidsGr;
+        }
+    }
+
+
+    // je crée une classe sacoche 
+
+    export class Sacoche {
+        public arme1: Arme;
+        public arme2: Arme;
+        public arme3: Arme;
+        public bouclier: Bouclier;
+        public nourriture: string;
+        constructor(arme1: Arme, arme2: Arme , arme3: Arme , bouclier : Bouclier ,nourriture : string){
+            this.arme1 =  arme1; 
+            this.arme2 = arme2;
+            this.arme3 = arme3;
+            this.bouclier = bouclier;
+            this.nourriture = nourriture;
+        }
+    }
