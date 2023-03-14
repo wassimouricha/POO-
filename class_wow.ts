@@ -14,10 +14,17 @@ export class Personnage {
     }
 // l'attaque
     attaquer(adversaire: Personnage) {
-        const degats = this.sacoche.arme1.pointsDegatsParAttaque;
-        const endurance = this.sacoche.arme1.pointEnduParAttaque;
-        console.log(`${this.nom} attaque ${adversaire.nom} avec ${this.sacoche.arme1.nom} et lui inflige ${degats} pts de dégats.`);
-        console.log(`${this.nom} perds également  ${endurance}  pts d'endurance `);
+        const degats =  adversaire.sacoche.bouclier.pointsEncaissementDégats <= this.sacoche.arme1.pointsDegatsParAttaque ? 
+        this.sacoche.arme1.pointsDegatsParAttaque - adversaire.sacoche.bouclier.pointsEncaissementDégats : 0;
+        const ptsEncDeg = adversaire.sacoche.bouclier.pointsEncaissementDégats;
+        if( ptsEncDeg < degats){
+            this.pointDeVie -= (degats - ptsEncDeg)
+            const endurance = this.sacoche.arme1.pointEnduParAttaque;
+            console.log(`${this.nom} attaque ${adversaire.nom} avec ${this.sacoche.arme1.nom} et lui inflige ${degats - ptsEncDeg} pts de dégats.`);
+            console.log(`${this.nom} perds également  ${endurance}  pts d'endurance `);
+        } else if (ptsEncDeg > degats) {
+            console.log(`${this.nom}  n'a fait aucun dégats car le bouclier de l'adversaire est trop puissant !  `);
+        }
         adversaire.recevoirDegats(degats,adversaire);
 
     }
@@ -25,7 +32,7 @@ export class Personnage {
     recevoirDegats(degats: number , adversaire: Personnage) {
         const ptsEncDeg = adversaire.sacoche.bouclier.pointsEncaissementDégats;
         const nomBouclier = adversaire.sacoche.bouclier.nom;
-        ptsEncDeg < degats ?   this.pointDeVie -= degats : null;
+        ptsEncDeg < degats ?   this.pointDeVie -= (degats - ptsEncDeg) : null;
         console.log(`${this.nom} reçoit ${degats} pts de dégats.`);
         ptsEncDeg < degats ?  
         console.log(`le moyen de protection de ${this.nom} est trop faible et n'a servie à rien ! `) 

@@ -6,7 +6,7 @@ export  let equipeHeros: Heros[] = [
     // Heros 1
     new Heros("Arthas Menethil", 30,  500 ,
      new Sacoche(new Arme("Lames du chaos", 10, 100, 1000), new Arme("épée double tranchant", 8,80,1000) , new Arme("Mains nues", 2,10,100),
-     new Bouclier("Bouclier Hylien", 13 , 2000)
+     new Bouclier("Bouclier Hylien", 22 , 2000)
      , "Raisin")),
     //  Heros 2 
     new Heros("Van Hellsing", 25,250,
