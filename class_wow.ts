@@ -6,11 +6,13 @@ export class Personnage {
     public endurance: number;
     public sacoche: Sacoche;
 
-    constructor(nom: string, pointDeVie: number, endurance: number , sacoche: Sacoche) {
+
+    constructor(nom: string, pointDeVie: number, endurance: number , sacoche: Sacoche ,) {
         this.nom = nom;
         this.pointDeVie = pointDeVie;
         this.endurance = endurance;
         this.sacoche = sacoche;
+
     }
 // l'attaque
     attaquer(adversaire: Personnage) {
@@ -47,7 +49,7 @@ export class Personnage {
  // je crée ma class Heros qui extends la class Personnage
 
 export class Heros extends Personnage {
-    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche) {
+    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche ) {
         super(nom, pointDeVie,endurance, sacoche);
     }
 }
@@ -91,6 +93,20 @@ export class Arme {
         }
     }
 
+    
+    // Je crée une classe nourriture 
+
+    export class Nourriture {
+        public nom: string;
+        public recupEndu:  number;
+        public poidsGr: number;
+        constructor(nom: string, recupEndu: number , poidsGr: number ){
+            this.nom = nom;
+            this.recupEndu = recupEndu;
+            this.poidsGr = poidsGr;
+        }
+    }
+
 
     // je crée une classe sacoche 
 
@@ -99,8 +115,8 @@ export class Arme {
         public arme2: Arme;
         public arme3: Arme;
         public bouclier: Bouclier;
-        public nourriture: string;
-        constructor(arme1: Arme, arme2: Arme , arme3: Arme , bouclier : Bouclier ,nourriture : string){
+        public nourriture: Nourriture;
+        constructor(arme1: Arme, arme2: Arme , arme3: Arme , bouclier : Bouclier ,nourriture : Nourriture){
             this.arme1 =  arme1; 
             this.arme2 = arme2;
             this.arme3 = arme3;
