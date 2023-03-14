@@ -44,7 +44,7 @@ import { equipeHeros, equipeMonstres } from "./equipes";
                           if(equipeHeros[0].pointDeVie > 0 ){
                             premierAttaquant.attaquer(equipeHeros[0]);
                             if(equipeHeros[0].pointDeVie > 0 ){
-                              console.log(`OH MON DIEU L'ENNEMI ${equipeHeros[0].nom} CONTRE ATTAQUE !! `);
+                              console.log(`OH MON DIEU  ${equipeHeros[0].nom} CONTRE ATTAQUE !! `);
                               equipeHeros[0].attaquer(equipeMonstres[0]);
                             }
                           } else {

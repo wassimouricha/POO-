@@ -3,30 +3,33 @@
 export class Personnage {
     public nom: string;
     public pointDeVie: number;
-    public arme: Arme;
     public endurance: number;
     public sacoche: Sacoche;
 
-    constructor(nom: string, pointDeVie: number, arme: Arme , endurance: number , sacoche: Sacoche) {
+    constructor(nom: string, pointDeVie: number, endurance: number , sacoche: Sacoche) {
         this.nom = nom;
         this.pointDeVie = pointDeVie;
-        this.arme = arme;
         this.endurance = endurance;
         this.sacoche = sacoche;
     }
 // l'attaque
     attaquer(adversaire: Personnage) {
-        const degats = this.arme.pointsDegatsParAttaque;
-        const endurance = this.arme.pointEnduParAttaque;
-        console.log(`${this.nom} attaque ${adversaire.nom} avec ${this.arme.nom} et lui inflige ${degats} pts de dégats.`);
+        const degats = this.sacoche.arme1.pointsDegatsParAttaque;
+        const endurance = this.sacoche.arme1.pointEnduParAttaque;
+        console.log(`${this.nom} attaque ${adversaire.nom} avec ${this.sacoche.arme1.nom} et lui inflige ${degats} pts de dégats.`);
         console.log(`${this.nom} perds également  ${endurance}  pts d'endurance `);
-        adversaire.recevoirDegats(degats);
+        adversaire.recevoirDegats(degats,adversaire);
 
     }
 // notion de dégats
-    recevoirDegats(degats: number) {
-    this.pointDeVie -= degats;
+    recevoirDegats(degats: number , adversaire: Personnage) {
+        const ptsEncDeg = adversaire.sacoche.bouclier.pointsEncaissementDégats;
+        const nomBouclier = adversaire.sacoche.bouclier.nom;
+        ptsEncDeg < degats ?   this.pointDeVie -= degats : null;
         console.log(`${this.nom} reçoit ${degats} pts de dégats.`);
+        ptsEncDeg < degats ?  
+        console.log(`le moyen de protection de ${this.nom} est trop faible et n'a servie à rien ! `) 
+        : console.log(`grace au ${nomBouclier} , ${this.nom} à pu  réduire les dégats ! `) 
         if (this.pointDeVie <= 0) {
         console.log(`${this.nom} est mort de chez mort.`);
     }
@@ -37,16 +40,16 @@ export class Personnage {
  // je crée ma class Heros qui extends la class Personnage
 
 export class Heros extends Personnage {
-    constructor(nom: string, pointDeVie: number, arme: Arme , endurance: number , sacoche: Sacoche) {
-        super(nom, pointDeVie, arme,endurance, sacoche);
+    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche) {
+        super(nom, pointDeVie,endurance, sacoche);
     }
 }
 
  // je crée ma class Monstre qui extends la class Personnage
 
 export class Monstre extends Personnage {
-    constructor(nom: string, pointDeVie: number, arme: Arme , endurance: number , sacoche: Sacoche ) {
-        super(nom, pointDeVie, arme , endurance, sacoche);
+    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche ) {
+        super(nom, pointDeVie , endurance, sacoche);
     }
 }
 
