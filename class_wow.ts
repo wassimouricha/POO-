@@ -30,30 +30,39 @@ export class Personnage {
         } else if (ptsEncDeg > degats) {
             console.log(`${this.nom}  n'a fait aucun dégats car le bouclier de l'adversaire est trop puissant !  `);
         }
-        adversaire.recevoirDegats(degats,adversaire);
+        if(this.endurance > 0){
+            adversaire.recevoirDegats(degats,adversaire);
+        } else {
+            null
+        }
+       
 
     }
+
+// manger
+        manger(adversaire: Personnage){
+            this.endurance += this.sacoche.nourriture.recupEndu; 
+            console.log( this.endurance += this.sacoche.nourriture.recupEndu);
+            console.log(`${this.nom} à récupéré  ${this.sacoche.nourriture.recupEndu} pts d'endurance en mangeant/buvant ${this.sacoche.nourriture.nom}`);
+        }
+
 // notion de dégats
     recevoirDegats(degats: number , adversaire: Personnage) {
         const ptsEncDeg = adversaire.sacoche.bouclier.pointsEncaissementDégats;
         const nomBouclier = adversaire.sacoche.bouclier.nom;
         // recevoir des dégats
         ptsEncDeg < degats ?   this.pointDeVie -= (degats - ptsEncDeg) : null;
-        console.log(`${this.nom} reçoit ${degats} pts de dégats.`);
+        console.log(`${this.nom} reçoit ${degats} pts de dégats. il lui reste ${this.pointDeVie} pts de vie`);
         // moyen de protection 
         ptsEncDeg < degats ?  
         console.log(`le moyen de protection de ${this.nom} est trop faible et n'a servie à rien ! `) 
         : console.log(`grace au ${nomBouclier} , ${this.nom} à pu  réduire les dégats ! `) 
         if (this.pointDeVie <= 0) {
-        console.log(`${this.nom} est mort.`);
+        console.log(`${this.nom} est mort. Il est désormais au cimetière`);
     }
     }
 
-    // manger
-    manger(adversaire: Personnage){
-        this.endurance += this.sacoche.nourriture.recupEndu; 
-        console.log(`${this.nom} à récupéré  ${this.sacoche.nourriture.recupEndu} pts d'endurance en mangeant/buvant ${this.sacoche.nourriture.nom}`);
-    }
+
 
 }
 

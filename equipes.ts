@@ -4,7 +4,7 @@ import { Arme, Bouclier, Heros, Monstre, Nourriture, Sacoche } from "./class_wow
 
 export  let equipeHeros: Heros[] = [
     // Heros 1
-    new Heros("Arthas Menethil", 30,  500 ,
+    new Heros("Arthas Menethil", 30,  10 ,
      new Sacoche(new Arme("Lames du chaos", 10, 100, 1000), new Arme("épée double tranchant", 8,80,1000) , new Arme("Mains nues", 2,10,100),
      new Bouclier("Bouclier Hylien", 22 , 2000), new Nourriture("Pomme", 10, 100),
      ),
