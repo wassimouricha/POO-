@@ -1,0 +1,2 @@
+- créer une class équipe pour rendre plus lisible/facile le code
+- 

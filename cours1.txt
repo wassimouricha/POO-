@@ -14,3 +14,7 @@ l'inversion de contrôle :
  interface: 
     une interface est une construction qui déclare les normes. 
     Les classes dérivées  d'une interface doivent être conformes aux normes imposées par l'interface.
+
+
+    composition entre deux objets : l'existence de l'un n'aurait pas de sens sans l'autre.
+    délégation : 

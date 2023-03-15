@@ -14,16 +14,19 @@ export class Personnage {
         this.sacoche = sacoche;
 
     }
+
 // l'attaque
     attaquer(adversaire: Personnage) {
         const degats =  adversaire.sacoche.bouclier.pointsEncaissementDégats <= this.sacoche.arme1.pointsDegatsParAttaque ? 
         this.sacoche.arme1.pointsDegatsParAttaque - adversaire.sacoche.bouclier.pointsEncaissementDégats : 0;
         const ptsEncDeg = adversaire.sacoche.bouclier.pointsEncaissementDégats;
+        const endurance = this.sacoche.arme1.pointEnduParAttaque;
         if( ptsEncDeg < degats){
             this.pointDeVie -= (degats - ptsEncDeg)
-            const endurance = this.sacoche.arme1.pointEnduParAttaque;
-            console.log(`${this.nom} attaque ${adversaire.nom} avec ${this.sacoche.arme1.nom} et lui inflige ${degats - ptsEncDeg} pts de dégats.`);
-            console.log(`${this.nom} perds également  ${endurance}  pts d'endurance `);
+            this.endurance -=  this.sacoche.arme1.pointEnduParAttaque;
+            this.endurance === 0 ? console.log(`${this.nom} ne peut pas attaquer il n'a plus de pts d'endurance !`)
+            : console.log(`${this.nom} attaque ${adversaire.nom} avec ${this.sacoche.arme1.nom} et lui inflige ${degats - ptsEncDeg} pts de dégats.`);
+            this.endurance === 0 ? null :  console.log(`${this.nom} perds également  ${endurance}  pts d'endurance `);
         } else if (ptsEncDeg > degats) {
             console.log(`${this.nom}  n'a fait aucun dégats car le bouclier de l'adversaire est trop puissant !  `);
         }
@@ -34,14 +37,22 @@ export class Personnage {
     recevoirDegats(degats: number , adversaire: Personnage) {
         const ptsEncDeg = adversaire.sacoche.bouclier.pointsEncaissementDégats;
         const nomBouclier = adversaire.sacoche.bouclier.nom;
+        // recevoir des dégats
         ptsEncDeg < degats ?   this.pointDeVie -= (degats - ptsEncDeg) : null;
         console.log(`${this.nom} reçoit ${degats} pts de dégats.`);
+        // moyen de protection 
         ptsEncDeg < degats ?  
         console.log(`le moyen de protection de ${this.nom} est trop faible et n'a servie à rien ! `) 
         : console.log(`grace au ${nomBouclier} , ${this.nom} à pu  réduire les dégats ! `) 
         if (this.pointDeVie <= 0) {
-        console.log(`${this.nom} est mort de chez mort.`);
+        console.log(`${this.nom} est mort.`);
     }
+    }
+
+    // manger
+    manger(adversaire: Personnage){
+        this.endurance += this.sacoche.nourriture.recupEndu; 
+        console.log(`${this.nom} à récupéré  ${this.sacoche.nourriture.recupEndu} pts d'endurance en mangeant/buvant ${this.sacoche.nourriture.nom}`);
     }
 
 }
