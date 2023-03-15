@@ -4,13 +4,15 @@ export class Personnage {
     public nom: string;
     public pointDeVie: number;
     public endurance: number;
+    public force: number;
     public sacoche: Sacoche;
 
 
-    constructor(nom: string, pointDeVie: number, endurance: number , sacoche: Sacoche ,) {
+    constructor(nom: string, pointDeVie: number, endurance: number , sacoche: Sacoche , force: number) {
         this.nom = nom;
         this.pointDeVie = pointDeVie;
         this.endurance = endurance;
+        this.force = force;
         this.sacoche = sacoche;
 
     }
@@ -69,16 +71,16 @@ export class Personnage {
  // je crée ma class Heros qui extends la class Personnage
 
 export class Heros extends Personnage {
-    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche ) {
-        super(nom, pointDeVie,endurance, sacoche);
+    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche , force : number) {
+        super(nom, pointDeVie,endurance, sacoche , force);
     }
 }
 
  // je crée ma class Monstre qui extends la class Personnage
 
 export class Monstre extends Personnage {
-    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche ) {
-        super(nom, pointDeVie , endurance, sacoche);
+    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche, force: number ) {
+        super(nom, pointDeVie , endurance, sacoche, force);
     }
 }
 
