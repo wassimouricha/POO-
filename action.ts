@@ -28,6 +28,8 @@ import { equipeHeros, equipeMonstres } from "./equipes";
                         }else{
                           equipeMonstres[0].manger 
                           console.log(`${equipeMonstres[0].nom} a mangé ${equipeMonstres[0].sacoche.nourriture.nom} et à regagné ${equipeMonstres[0].sacoche.nourriture.recupEndu} pts d'endurance !`);
+                          console.log(`${equipeMonstres[0].nom} a désormais ${equipeMonstres[0].endurance.pointDenduranceActuel}/${equipeMonstres[0].endurance.pointDenduranceMax} pts d'endurance`);
+                          
                         }
                       }else{
                       console.log(`${equipeMonstres[0].nom} n'a pas eu le temps de regagner de l'endurance`);
@@ -60,6 +62,7 @@ import { equipeHeros, equipeMonstres } from "./equipes";
                             }else{
                               equipeHeros[0].manger 
                               console.log(`${equipeHeros[0].nom} a mangé ${equipeHeros[0].sacoche.nourriture.nom} et à regagné ${equipeHeros[0].sacoche.nourriture.recupEndu} pts d'endurance !`);
+                              console.log(`${equipeHeros[0].nom} a désormais ${equipeHeros[0].endurance.pointDenduranceActuel}/${equipeHeros[0].endurance.pointDenduranceMax} pts d'endurance`);
                             }
                           }else{
                             console.log(`${equipeHeros[0].nom} n'a pas eu le temps de regagner de l'endurance`);

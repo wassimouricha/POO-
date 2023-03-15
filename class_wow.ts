@@ -3,12 +3,12 @@
 export class Personnage {
     public nom: string;
     public pointDeVie: PointDeVies;
-    public endurance: number;
+    public endurance: PointDendurance;
     public force: number;
     public sacoche: Sacoche;
 
 
-    constructor(nom: string, pointDeVie: PointDeVies, endurance: number , sacoche: Sacoche , force: number) {
+    constructor(nom: string, pointDeVie: PointDeVies, endurance: PointDendurance , sacoche: Sacoche , force: number) {
         this.nom = nom;
         this.pointDeVie = pointDeVie;
         this.endurance = endurance;
@@ -25,14 +25,14 @@ export class Personnage {
         const endurance = this.sacoche.arme1.pointEnduParAttaque;
         if( ptsEncDeg < degats){
             this.pointDeVie.pointDeVieActuel -= (degats - ptsEncDeg)
-            this.endurance -=  this.sacoche.arme1.pointEnduParAttaque;
-            this.endurance === 0 ? console.log(`${this.nom} ne peut pas attaquer il n'a plus de pts d'endurance !`)
+            this.endurance.pointDenduranceActuel -=  this.sacoche.arme1.pointEnduParAttaque;
+            this.endurance.pointDenduranceActuel === 0 ? console.log(`${this.nom} ne peut pas attaquer il n'a plus de pts d'endurance !`)
             : console.log(`${this.nom} attaque ${adversaire.nom} avec ${this.sacoche.arme1.nom} et lui inflige ${degats - ptsEncDeg} pts de dégats.`);
-            this.endurance === 0 ? null :  console.log(`${this.nom} perds également  ${endurance}  pts d'endurance `);
+            this.endurance.pointDenduranceActuel === 0 ? null :  console.log(`${this.nom} perds également  ${endurance}  pts d'endurance `);
         } else if (ptsEncDeg > degats) {
             console.log(`${this.nom}  n'a fait aucun dégats car le bouclier de l'adversaire est trop puissant !  `);
         }
-        if(this.endurance > 0){
+        if(this.endurance.pointDenduranceActuel > 0){
             adversaire.recevoirDegats(degats,adversaire);
         } else {
             null
@@ -43,9 +43,9 @@ export class Personnage {
 
 // manger
         manger(adversaire: Personnage){
-            this.endurance += this.sacoche.nourriture.recupEndu; 
-            console.log( this.endurance += this.sacoche.nourriture.recupEndu);
-            console.log(`${this.nom} à récupéré  ${this.sacoche.nourriture.recupEndu} pts d'endurance en mangeant/buvant ${this.sacoche.nourriture.nom}`);
+            this.endurance.pointDenduranceActuel += this.sacoche.nourriture.recupEndu; 
+            console.log( this.endurance.pointDenduranceActuel += this.sacoche.nourriture.recupEndu);
+            console.log(`${this.nom} à récupéré  ${this.sacoche.nourriture.recupEndu} pts d'endurance en mangeant/buvant ${this.sacoche.nourriture.nom} et a désormais ${this.endurance.pointDenduranceActuel}/${this.endurance.pointDenduranceMax}`);
         }
 
 // notion de dégats
@@ -71,7 +71,7 @@ export class Personnage {
  // je crée ma class Heros qui extends la class Personnage
 
 export class Heros extends Personnage {
-    constructor(nom: string, pointDeVie: PointDeVies,  endurance: number , sacoche: Sacoche , force : number) {
+    constructor(nom: string, pointDeVie: PointDeVies,  endurance: PointDendurance , sacoche: Sacoche , force : number) {
         super(nom, pointDeVie,endurance, sacoche , force);
     }
 }
@@ -79,7 +79,7 @@ export class Heros extends Personnage {
  // je crée ma class Monstre qui extends la class Personnage
 
 export class Monstre extends Personnage {
-    constructor(nom: string, pointDeVie: PointDeVies,  endurance: number , sacoche: Sacoche, force: number ) {
+    constructor(nom: string, pointDeVie: PointDeVies,  endurance: PointDendurance , sacoche: Sacoche, force: number ) {
         super(nom, pointDeVie , endurance, sacoche, force);
     }
 }
@@ -156,3 +156,15 @@ export class Arme {
             this.pointDeVieActuel = pointDeVieActuel;
         }
     }
+
+        // afin d'ajouter un maximum de point d'endurance et les points d'endurance actuelles
+
+        export class PointDendurance {
+            public pointDenduranceMax: number;
+            public pointDenduranceActuel: number; 
+            constructor(pointDenduranceMax: number, pointDenduranceActuel: number){
+                this.pointDenduranceMax = pointDenduranceMax;
+                this.pointDenduranceActuel = pointDenduranceActuel;
+            }
+        }
+    
