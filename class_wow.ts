@@ -2,13 +2,13 @@
 
 export class Personnage {
     public nom: string;
-    public pointDeVie: number;
+    public pointDeVie: PointDeVies;
     public endurance: number;
     public force: number;
     public sacoche: Sacoche;
 
 
-    constructor(nom: string, pointDeVie: number, endurance: number , sacoche: Sacoche , force: number) {
+    constructor(nom: string, pointDeVie: PointDeVies, endurance: number , sacoche: Sacoche , force: number) {
         this.nom = nom;
         this.pointDeVie = pointDeVie;
         this.endurance = endurance;
@@ -24,7 +24,7 @@ export class Personnage {
         const ptsEncDeg = adversaire.sacoche.bouclier.pointsEncaissementDégats;
         const endurance = this.sacoche.arme1.pointEnduParAttaque;
         if( ptsEncDeg < degats){
-            this.pointDeVie -= (degats - ptsEncDeg)
+            this.pointDeVie.pointDeVieActuel -= (degats - ptsEncDeg)
             this.endurance -=  this.sacoche.arme1.pointEnduParAttaque;
             this.endurance === 0 ? console.log(`${this.nom} ne peut pas attaquer il n'a plus de pts d'endurance !`)
             : console.log(`${this.nom} attaque ${adversaire.nom} avec ${this.sacoche.arme1.nom} et lui inflige ${degats - ptsEncDeg} pts de dégats.`);
@@ -53,13 +53,13 @@ export class Personnage {
         const ptsEncDeg = adversaire.sacoche.bouclier.pointsEncaissementDégats;
         const nomBouclier = adversaire.sacoche.bouclier.nom;
         // recevoir des dégats
-        ptsEncDeg < degats ?   this.pointDeVie -= (degats - ptsEncDeg) : null;
-        console.log(`${this.nom} reçoit ${degats} pts de dégats. il lui reste ${this.pointDeVie} pts de vie`);
+        ptsEncDeg < degats ?   this.pointDeVie.pointDeVieActuel -= (degats - ptsEncDeg) : null;
+        console.log(`${this.nom} reçoit ${degats} pts de dégats. il lui reste ${this.pointDeVie.pointDeVieActuel}/${this.pointDeVie.pointDeViesMax} pts de vie`);
         // moyen de protection 
         ptsEncDeg < degats ?  
         console.log(`le moyen de protection de ${this.nom} est trop faible et n'a servie à rien ! `) 
         : console.log(`grace au ${nomBouclier} , ${this.nom} à pu  réduire les dégats ! `) 
-        if (this.pointDeVie <= 0) {
+        if (this.pointDeVie.pointDeVieActuel <= 0) {
         console.log(`${this.nom} est mort. Il est désormais au cimetière`);
     }
     }
@@ -71,7 +71,7 @@ export class Personnage {
  // je crée ma class Heros qui extends la class Personnage
 
 export class Heros extends Personnage {
-    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche , force : number) {
+    constructor(nom: string, pointDeVie: PointDeVies,  endurance: number , sacoche: Sacoche , force : number) {
         super(nom, pointDeVie,endurance, sacoche , force);
     }
 }
@@ -79,7 +79,7 @@ export class Heros extends Personnage {
  // je crée ma class Monstre qui extends la class Personnage
 
 export class Monstre extends Personnage {
-    constructor(nom: string, pointDeVie: number,  endurance: number , sacoche: Sacoche, force: number ) {
+    constructor(nom: string, pointDeVie: PointDeVies,  endurance: number , sacoche: Sacoche, force: number ) {
         super(nom, pointDeVie , endurance, sacoche, force);
     }
 }
@@ -144,5 +144,15 @@ export class Arme {
             this.arme3 = arme3;
             this.bouclier = bouclier;
             this.nourriture = nourriture;
+        }
+    }
+
+    // afin d'ajouter un maximum de point de vie et les points de vies actuelles
+    export class PointDeVies {
+        public pointDeViesMax: number;
+        public pointDeVieActuel: number; 
+        constructor(pointDeViesMax: number, pointDeVieActuel: number){
+            this.pointDeViesMax = pointDeViesMax;
+            this.pointDeVieActuel = pointDeVieActuel;
         }
     }

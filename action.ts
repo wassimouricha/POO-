@@ -20,10 +20,10 @@ import { equipeHeros, equipeMonstres } from "./equipes";
               // Math.floor() renvoie le plus grand entier qui est inférieur ou égal à un nombre x ici x = Math.random() * equipeHeros.length
               // Math.random() qui génère un nombre aléatoire compris entre 0 et 1
             premierAttaquant = equipeHeros[Math.floor(Math.random() * equipeHeros.length)]; 
-            if(premierAttaquant.pointDeVie > 0){
+            if(premierAttaquant.pointDeVie.pointDeVieActuel > 0){
                      // tirez un personnage au hasard dans l'équipe de héros
                       if(recupEndAuHasard === 0){
-                        if(equipeMonstres[0].pointDeVie <= 0){
+                        if(equipeMonstres[0].pointDeVie.pointDeVieActuel <= 0){
                           console.log(`${equipeMonstres[0].nom} ne peux pas manger puisqu'il est mort !`);
                         }else{
                           equipeMonstres[0].manger 
@@ -33,9 +33,9 @@ import { equipeHeros, equipeMonstres } from "./equipes";
                       console.log(`${equipeMonstres[0].nom} n'a pas eu le temps de regagner de l'endurance`);
                       }
                       console.log(`L'équipe de héros attaque  avec ${premierAttaquant.nom}`);
-                      if(equipeMonstres[0].pointDeVie > 0 ){
+                      if(equipeMonstres[0].pointDeVie.pointDeVieActuel > 0 ){
                         premierAttaquant.attaquer(equipeMonstres[0]);
-                        equipeMonstres[0].pointDeVie <0 ? console.log(`OH MON DIEU L'ENNEMI ${equipeMonstres[0].nom} CONTRE ATTAQUE !! `) : null;
+                        equipeMonstres[0].pointDeVie.pointDeVieActuel <0 ? console.log(`OH MON DIEU L'ENNEMI ${equipeMonstres[0].nom} CONTRE ATTAQUE !! `) : null;
                         equipeMonstres[0].attaquer(equipeHeros[0]);
                       } else {
                         mort = true
@@ -52,10 +52,10 @@ import { equipeHeros, equipeMonstres } from "./equipes";
           } else { 
               // Sinon, l'équipe choisie est l'équipe de monstres
             premierAttaquant = equipeMonstres[Math.floor(Math.random() * equipeMonstres.length)]; 
-            if(premierAttaquant.pointDeVie > 0){
+            if(premierAttaquant.pointDeVie.pointDeVieActuel > 0){
                           // tirez un personnage au hasard dans l'équipe de monstres
                           if(recupEndAuHasard === 0){
-                            if(equipeHeros[0].pointDeVie <= 0){
+                            if(equipeHeros[0].pointDeVie.pointDeVieActuel <= 0){
                               console.log(`${equipeHeros[0].nom} ne peux pas manger puisqu'il est mort !`);
                             }else{
                               equipeHeros[0].manger 
@@ -66,10 +66,10 @@ import { equipeHeros, equipeMonstres } from "./equipes";
                           }
                           
                           console.log(`L'équipe de monstres attaque  avec ${premierAttaquant.nom}`);
-                          if(equipeHeros[0].pointDeVie > 0 ){
+                          if(equipeHeros[0].pointDeVie.pointDeVieActuel > 0 ){
                             premierAttaquant.attaquer(equipeHeros[0]);
-                            equipeHeros[0].pointDeVie > 0 ?  console.log(`OH MON DIEU  ${equipeHeros[0].nom} CONTRE ATTAQUE !! `) : null;
-                            equipeHeros[0].pointDeVie > 0 ? equipeHeros[0].attaquer(equipeMonstres[0]) : equipeHeros[0].attaquer(equipeMonstres[1]);
+                            equipeHeros[0].pointDeVie.pointDeVieActuel > 0 ?  console.log(`OH MON DIEU  ${equipeHeros[0].nom} CONTRE ATTAQUE !! `) : null;
+                            equipeHeros[0].pointDeVie.pointDeVieActuel > 0 ? equipeHeros[0].attaquer(equipeMonstres[0]) : equipeHeros[0].attaquer(equipeMonstres[1]);
                           } else {
                             mort = true
                             if (mort == true ){
@@ -92,16 +92,16 @@ import { equipeHeros, equipeMonstres } from "./equipes";
       }
 
 // Boucle de jeu
-while ((equipeHeros[0].pointDeVie > 0 && equipeHeros[1].pointDeVie > 0) || (equipeMonstres[0].pointDeVie > 0 && equipeMonstres[1].pointDeVie > 0)) {
+while ((equipeHeros[0].pointDeVie.pointDeVieActuel > 0 && equipeHeros[1].pointDeVie.pointDeVieActuel > 0) || (equipeMonstres[0].pointDeVie.pointDeVieActuel > 0 && equipeMonstres[1].pointDeVie.pointDeVieActuel > 0)) {
   Jeu(equipeHeros,equipeMonstres);
             // qui a remporté la victoire ? 
             let mort : Boolean = false;
-            if(equipeMonstres[0].pointDeVie <= 0  && equipeMonstres[1].pointDeVie <= 0){
+            if(equipeMonstres[0].pointDeVie.pointDeVieActuel <= 0  && equipeMonstres[1].pointDeVie.pointDeVieActuel <= 0){
               mort = true; 
               if(mort == true){
                 console.log(`l'équipe de  ${equipeHeros[0].nom} et ${equipeHeros[1].nom}  a remporté la victoire ! `);
               }             
-            } else  if(equipeHeros[0].pointDeVie <= 0 && equipeHeros[1].pointDeVie <= 0){
+            } else  if(equipeHeros[0].pointDeVie.pointDeVieActuel <= 0 && equipeHeros[1].pointDeVie.pointDeVieActuel <= 0){
               mort = true 
               if(mort == true) {
                 console.log( `l'équipe de  ${equipeMonstres[0].nom} et ${equipeMonstres[1].nom}  a remporté la victoire ! `);
