@@ -18,3 +18,16 @@ l'inversion de contrôle :
 
     composition entre deux objets : l'existence de l'un n'aurait pas de sens sans l'autre.
     délégation : 
+
+
+
+
+    Design patterns:
+    = recette de cuisine
+    = une manière de résoudre un problème = standardisé 
+   type de design patterns :
+    - singleton : une classe qui ne peut exister qu'une seule fois  dans tout le projet , on pourra jouer avec n'importe où dans le code ==> grosse variable globale 
+    - factory : une classe qui fabrique d'autres objets 
+    souvent , la factory est aussi un singleton 
+
+    
